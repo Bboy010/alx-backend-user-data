@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Task 5.Let Encrypting passwords"""
+"""Let Encrypting passwords"""
 
 import bcrypt
 
