@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
-"""Personal data"""
+"""Regex-ing"""
 
 import re
+from typing import List
 
 
-def filter_datum(fields, redaction, message, separator):
-    """Define filter datum"""
-    regex = '|'.join(f'({field}=.*?)({separator}|$)' for field in fields)
-    return re.sub(regex, rf'\1{redaction}\2', message)
+def filter_datum(
+        fields: List[str], redaction: str, message: str, separator: str
+        ) -> str:
+    """returns the log message obfuscated"""
+    for field in fields:
+        message = re.sub(field + "=.*?" + separator,
+                         field + "=" + redaction + separator, message)
+    return message
