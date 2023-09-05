@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
-"""log formatter"""
+"""create logger"""
 
+import logging
 import re
 from typing import List
-import logging
+import csv
+
+
+PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
 
 def filter_datum(
@@ -36,3 +40,15 @@ class RedactingFormatter(logging.Formatter):
         return filter_datum(
             self.fields, self.REDACTION, super(
                 RedactingFormatter, self).format(record), self.SEPARATOR)
+
+
+def get_logger() -> logging.Logger:
+    """returns a logging.Logger object"""
+    logger = logging.getLogger('user_data')
+    logger.setLevel(logging.INFO)
+    logger.propagate = False
+    handler = logging.StreamHandler()
+    formatter = RedactingFormatter(PII_FIELDS)
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+    return logger
