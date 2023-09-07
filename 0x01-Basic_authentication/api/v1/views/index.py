@@ -34,3 +34,13 @@ def unauthorized() -> str:
     """
     abort(401)
     return jsonify({"error": "Unauthorized"})
+
+
+@app_views.route('/forbidden', methods=['GET'], strict_slashes=False)
+def forbidden() -> str:
+    """ GET /api/v1/forbidden
+    Return:
+      - the error status of the API
+    """
+    abort(403)
+    return jsonify({"error": "Forbidden"})
