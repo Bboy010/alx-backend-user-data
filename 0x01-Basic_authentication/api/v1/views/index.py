@@ -32,4 +32,5 @@ def unauthorized() -> str:
     Return:
       - the error status of the API
     """
+    abort(401)
     return jsonify({"error": "Unauthorized"})
