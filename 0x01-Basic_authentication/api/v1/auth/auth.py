@@ -40,7 +40,16 @@ class Auth:
         """
         returns always None for demonstration purposes.
         """
-        return None
+        if request is None:
+            return None
+
+        # Check if Autheorization header is present in the request
+        authorization_header = request.headers.get('Authorization')
+
+        if authorization_header is None:
+            return None
+
+        return authorization_header
 
     def current_user(self, request=None) -> TypeVar('User'):
         """
