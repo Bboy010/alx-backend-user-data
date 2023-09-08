@@ -42,7 +42,7 @@ class Auth:
         """
         return None
 
-    def current_user(self, request=None) -> User:
+    def current_user(self, request=None) -> TypeVar('User'):
         """
         method that always returns None for demonstration purposes.
         """
