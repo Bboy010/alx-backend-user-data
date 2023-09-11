@@ -28,54 +28,26 @@ if auth_type:
 
 @app.errorhandler(404)
 def not_found(error) -> str:
-    """ Not found handler
-
-    :param error: The error object.
-    :type error: Exception
-    :return: JSON response for a 404 error.
-    :rtype: str
-    """
+    """ Not found handler """
     return jsonify({"error": "Not found"}), 404
 
 
 @app.errorhandler(401)
 def unauthorized(error) -> str:
-    """ Unauthorized handler
-
-    :param error: The error object.
-    :type error: Exception
-    :return: JSON response for a 401 error.
-    :rtype: str
-    """
+    """ Unauthorized handler """
     return jsonify({"error": "Unauthorized"}), 401
 
 
 @app.errorhandler(403)
 def forbidden(error) -> str:
-    """ Forbidden handler
-
-    :param error: The error object.
-    :type error: Exception
-    :return: JSON response for a 403 error.
-    :rtype: str
-    """
+    """ Forbidden handler """
     return jsonify({"error": "Forbidden"}), 403
 
 
 # Add a method to handle before_request
 @app.before_request
 def before_request():
-    """
-    Handle authentication before processing the request.
-
-    If authentication is required for the requested path,
-    this function checks for the presence of
-    the 'Authorization' header and the current user.
-    It aborts the request with a 401 Unauthorized
-    or 403 Forbidden response if authentication fails.
-
-    :return: None
-    """
+    """ Handle authentication before processing the request."""
     if auth is None:
         return
 

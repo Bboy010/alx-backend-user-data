@@ -9,16 +9,7 @@ User = TypeVar('User')
 
 class Auth:
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-        """
-        Check if authentication is required for the given path.
-
-        :param path: The path to check for authentication requirement.
-        :type path: str
-        :param excluded_paths: excluded path from authentication
-        :type excluded_paths: List[str]
-        :return: True if authentication is required,else  False
-        :rtype: bool
-        """
+        """ Check if authentication is required for the given path. """
         if path is None:
             return True
 
@@ -41,14 +32,7 @@ class Auth:
         return True
 
     def authorization_header(self, request=None) -> str:
-        """
-        Get the 'Authorization' header value from the request.
-
-        :param request: The Flask request object.
-        :type request: flask.Request
-        :return: The 'Authorization' header value or None if not found.
-        :rtype: str
-        """
+        """ Get the 'Authorization' header value from the request. """
         if request is None:
             return None
 
@@ -58,12 +42,5 @@ class Auth:
         return authorization_header
 
     def current_user(self, request=None) -> TypeVar('User'):
-        """
-        Get the current user.
-
-        :param request: The Flask request object.
-        :type request: flask.Request
-        :return: The current user or None for demonstration purposes.
-        :rtype: TypeVar('User')
-        """
+        """ Get the current user """
         return None
